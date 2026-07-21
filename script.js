@@ -1,40 +1,38 @@
 document.addEventListener('DOMContentLoaded', () => {
   const generateBtn = document.getElementById('generateBtn');
-  const topicInput = document.getElementById('topicInput');
-  const contentType = document.getElementById('contentType');
-  const outputDiv = document.getElementById('output');
+  const promptInput = document.getElementById('promptInput');
+  const resultArea = document.getElementById('resultArea');
 
   if (generateBtn) {
     generateBtn.addEventListener('click', async () => {
-      const topic = topicInput.value.trim();
-      const type = contentType.value;
-
-      if (!topic) {
-        alert('Kripya koi topic ya keyword likhiye!');
+      const promptText = promptInput.value.trim();
+      if (!promptText) {
+        alert('Kripya koi topic ya prompt likhiye!');
         return;
       }
 
-      outputDiv.innerHTML = '🔄 Detailed content generate ho raha hai, kripya thoda intezaar karein...';
-      outputDiv.style.display = 'block';
+      resultArea.innerHTML = 'Content generate ho raha hai, kripya intezar karein...';
 
       try {
-        const response = await fetch('/api/generate', {
+        // Direct browser-based generation
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${process.env.GEMINI_API_KEY || ''}`, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ prompt: topic, type: type }),
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{
+              parts: [{ text: `Aap ek professional content creator aur digital wellness expert hain. Is topic par ekdam detailed, lamba, engaging aur professional content Hinglish language me likhiye, jisme proper headings aur bullet points hon: ${promptText}` }]
+            }]
+          })
         });
 
         const data = await response.json();
-
-        if (response.ok) {
-          outputDiv.innerHTML = `<h3>✨ Generated Content:</h3><div style="white-space: pre-wrap; text-align: left; margin-top: 10px;">${data.result}</div>`;
+        if (data.candidates && data.candidates[0].content.parts[0].text) {
+          resultArea.innerHTML = data.candidates[0].content.parts[0].text;
         } else {
-          outputDiv.innerHTML = `❌ Error: ${data.error || 'Kuch gadbad ho gayi.'}`;
+          resultArea.innerHTML = 'Error: Content generate nahi ho paya. Dobara koshish karein.';
         }
       } catch (err) {
-        outputDiv.innerHTML = `❌ Connection Error: ${err.message}`;
+        resultArea.innerHTML = 'Connection Error: ' + err.message;
       }
     });
   }

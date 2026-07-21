@@ -1,5 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const generateBtn = document.getElementById('generateBtn');
+const generateBtn = document.getElementById('generateBtn');
   const promptInput = document.getElementById('promptInput');
   const resultArea = document.getElementById('resultArea');
 
@@ -15,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       
       
-      const apiKey = "AIzaSy... AIzaSyAMDpGZMB8HFH-HAXIck6qFMgpPMRRv-HA";
+      const apiKey = "AIzaSy... (AIzaSyAMDpGZMB8HFH-HAXIck6qFMgpPMRRv-HA)";
 
       try {
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
@@ -43,3 +42,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+  

@@ -13,8 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       resultArea.innerHTML = 'Content generate ho raha hai, kripya intezar karein...';
 
-      // Apni Gemini API Key yahan seedha daal dein
-      const apiKey = "AIzaSy... (AIzaSyAMDpGZMB8HFH-HAXIck6qFMgpPMRRv-HA)";
+      
+      
+      const apiKey = "AIzaSy... AIzaSyAMDpGZMB8HFH-HAXIck6qFMgpPMRRv-HA";
 
       try {
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {

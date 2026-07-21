@@ -14,7 +14,7 @@ async function generateContent() {
   outputDiv.innerHTML = 'Content generate ho raha hai, kripya intezar karein...';
 
   // Yahan apni asli Gemini API Key daal dijiye
-  const apiKey = "AIzaSy... (AIzaSyAMDpGZMB8HFH-HAXIck6qFMgpPMRRv-HA)";
+  const apiKey = "AIzaSyAMDpGZMB8HFH-HAXIck6qFMgpPMRRv-HA";
 
   const promptText = `Aap ek professional content creator aur digital wellness expert hain. Is topic par ekdam detailed, engaging aur professional content likhiye: ${topic}. Content Type: ${typeSelect ? typeSelect.value : 'General'} aur Language: ${langSelect ? langSelect.value : 'Hinglish'}. Proper headings aur bullet points ka use karein.`;
 

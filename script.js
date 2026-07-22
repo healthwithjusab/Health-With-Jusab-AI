@@ -31,10 +31,15 @@ async function generateContent() {
 
     const data = await response.json();
 
+    if (data.error) {
+      outputDiv.innerHTML = 'Google Error: ' + data.error.message;
+      return;
+    }
+
     if (data.candidates && data.candidates[0].content.parts[0].text) {
       outputDiv.innerHTML = data.candidates[0].content.parts[0].text;
     } else {
-      outputDiv.innerHTML = 'Error: API key galat ho sakti hai ya quota khatam hai. Dobara check karein.';
+      outputDiv.innerHTML = 'Error: Response format match nahi hua.';
     }
   } catch (err) {
     outputDiv.innerHTML = 'Connection Error: ' + err.message;

@@ -34,5 +34,4 @@ async function generateContent() {
   } catch (err) {
     outputDiv.innerHTML = 'Connection Error: ' + err.message;
   }
-        }
-
+}
